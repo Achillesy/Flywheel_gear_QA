@@ -9,7 +9,7 @@ Build context for a Flywheel Gear that can run Matlab code.
 ### Docker
   * Ubuntu Focal 20.04(LTS)
 ```bash
-sudo aptitude remove docker docker-engine docker.io containerd runc
+sudo apt-get remove docker docker-engine docker.io containerd runc
 sudo apt-get update
 sudo apt-get install apt-transport-https ca-certificates curl gnupg-agen software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -35,7 +35,7 @@ fw logout
 ```
 ### Flywheel SDK
 ```bash
-sudo aptitude install python3-pip
+sudo apt-get install python3-pip
 python3 -m pip install flywheel-sdk
 ```
 
@@ -72,6 +72,31 @@ docker push ahsoka/alpine-python:0.1.0
 ## Testing/Debugging
 ```bash
 fw gear local --my_name="Ahsoka Tano" --message_file=message.txt --num_rep=3
+fw gear upload
+```
+
+# Building A Matlab Gear
+[Background](https://docs.flywheel.io/hc/en-us/articles/360019040653-Building-A-Matlab-Gear)
+
+[Matlab Compiler Runtime](https://www.mathworks.com/products/compiler/matlab-runtime.html)
+
+## Example Matlab Gears
+[Gannet](https://github.com/scitran-apps/gannet): Build context for a Gear that can run Gannet. Gannet is a software package designed for the analysis of edited magnetic resonance spectroscopy (MRS) data. 
+
+## Matlab Code
+```bash
+mcc -m auto_QA/run_ACR_test.m -o autoQA
+rm mccExcludedFiles.log 
+rm readme.txt 
+rm requiredMCRProducts.txt 
+rm run_autoQA.sh 
+./autoQA
+```
+
+## Available MCR images via Flywheel Dockerhub
+```bash
+docker pull flywheel/matlab-mcr:v97
+fw gear local
 fw gear upload
 ```
 
