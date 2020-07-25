@@ -1,0 +1,33 @@
+{
+    "name": "auto-qa",
+    "label": "auto_QA: My 2nd Gear",
+    "description": "My very first gear, developed with the scitran-apps/gannet proj.",
+    "version": "0.1.5",
+    "author":  "Xuchu Liu",
+    "maintainer":  "Jie",
+    "cite":  "",
+    "license": "Apache-2.0",
+    "url": "",
+    "source":  "",
+
+    "environment": {
+        "FLYWHEEL":"/flywheel/v0"
+     },
+           
+    "custom": {
+        "gear-builder": {
+            "category": "analysis",
+            "image": "flywheel/matlab-mcr:v97"
+        },
+            
+        "flywheel": {
+            "suite": "auto QA"
+         }
+    },
+    
+    "inputs": {
+    },
+
+    "config": {
+    }
+}

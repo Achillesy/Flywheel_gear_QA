@@ -1,0 +1,21 @@
+#! /bin/bash
+# Run autoQA gear
+
+# Configure the ENV
+export LD_LIBRARY_PATH=/opt/mcr/v97/runtime/glnxa64:/opt/mcr/v97/bin/glnxa64:/opt/mcr/v97/sys/os/glnxa64:$LD_LIBRARY_PATH
+
+###############################################################################
+# Configure paths
+FLYWHEEL_BASE=/flywheel/v0
+OUTPUT_DIR=$FLYWHEEL_BASE/output
+INPUT_DIR=$FLYWHEEL_BASE/input
+CONFIG_FILE=$FLYWHEEL_BASE/config.json
+MANIFEST_FILE=$FLYWHEEL_BASE/manifest.json
+
+###############################################################################
+# Run autoQA
+echo -e "Starting autoQA..."
+/flywheel/v0/autoQA
+echo -e "Done!"
+
+exit 0

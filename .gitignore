@@ -13,3 +13,10 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Matlab
+mccExcludedFiles.log 
+readme.txt 
+requiredMCRProducts.txt 
+run_autoQA.sh 
+autoQA
