@@ -7,8 +7,8 @@
     "maintainer":  "Jie",
     "cite":  "",
     "license": "Apache-2.0",
-    "url": "",
-    "source":  "",
+    "url": "https://github.com/Achillesy/gear_QA",
+    "source":  "https://github.com/Achillesy/gear_QA",
 
     "environment": {
         "FLYWHEEL":"/flywheel/v0"
