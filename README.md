@@ -1,7 +1,6 @@
-> Pardon my English :shit:
-
 # gear_QA
 Build context for a Flywheel Gear that can run Matlab code.
+> Pardon my English ![image](img/looking.svg)
 
 # Tutorial
 ## Environment Setup
@@ -12,7 +11,7 @@ Build context for a Flywheel Gear that can run Matlab code.
 ## Testing/Debugging
 
 # History
-  * v0.1.0 Add COPY autoQA
+  * v0.1.0 Add COPY autoQA :shit:
   * v0.1.1 Forget to save file
   * v0.1.2 Change path of autoQA
   * v0.1.3 RUN chmod +x
