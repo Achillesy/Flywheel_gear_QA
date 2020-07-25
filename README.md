@@ -4,7 +4,7 @@ Build context for a Flywheel Gear that can run Matlab code.
 
 
 # Tutorial
-
+[Gear Building Tutorial](https://docs.flywheel.io/hc/en-us/articles/360041766774-Gear-Building-Tutorial)
 ## Environment Setup
 ### Docker
   * Ubuntu Focal 20.04(LTS)
@@ -38,21 +38,47 @@ fw logout
 sudo aptitude install python3-pip
 python3 -m pip install flywheel-sdk
 ```
+
+## "Hello World"
+We'll develop this example gear in the following steps:
+1. Develop a working **run script**
+2. Generate a **Manifest**
+3. Generate a **Dockerfile**
+4. Test the gear locally
+5. Upload to Flywheel
+
+
 ## The Flywheel Environment
+```
+/flywheel/v0/
+     ├── input/
+     ├── output/
+     └── config.json
+```
 
 ## The Run Script
 
 ## The Manifest
 
 ## The Dockerfile
+```bash
+docker pull alpine:latest
+docker image ls
+docker image rm <IMAGE_ID> -f
+docker build -t ahsoka/alpine-python:0.1.0 .
+docker push ahsoka/alpine-python:0.1.0
+```
 
 ## Testing/Debugging
-
+```bash
+fw gear local --my_name="Ahsoka Tano" --message_file=message.txt --num_rep=3
+fw gear upload
+```
 
 # History
   * v0.1.0 COPY autoQA
   * v0.1.1 ~~Save file~~ :shit:
-  * v0.1.2 ~~Change~~ path
+  * v0.1.2 ~~Change path~~ :shit:
   * v0.1.3 RUN chmod +x
   * v0.1.4 export LD_LIBRARY_PATH
   * v0.1.5 Success. :sunglasses:
