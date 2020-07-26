@@ -21,6 +21,7 @@ apt-cache madison docker-ce
 sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
+docker version
 docker login
 docker run hello-world
 sudo systemctl status docker
@@ -97,6 +98,10 @@ rm run_autoQA.sh
 ```bash
 docker pull flywheel/matlab-mcr:v97
 fw gear local
+docker image ls
+docker container run -it --rm <IMAGE ID> /bin/bash
+docker container ls --all
+docker container rm <IMAGE ID>
 fw gear upload
 ```
 
