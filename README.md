@@ -86,12 +86,16 @@ fw gear upload
 
 ## Matlab Code
 ```bash
-mcc -m auto_QA/run_ACR_test.m -o autoQA
+mcc -m run_ACR_test.m -o autoQA
 rm mccExcludedFiles.log 
 rm readme.txt 
 rm requiredMCRProducts.txt 
 rm run_autoQA.sh 
 ./autoQA
+docker run --rm -ti \
+    -v </path/to/MSAE/parent/folder>:/execute \
+    flywheel/matlab-mcr:v97 \
+    /execute/autoQA [<any input arguments>]
 ```
 
 ## Available MCR images via Flywheel Dockerhub
