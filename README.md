@@ -97,7 +97,7 @@ rm run_autoQA.sh
 ## Available MCR images via Flywheel Dockerhub
 ```bash
 docker pull flywheel/matlab-mcr:v97
-docker build -t ahsoka/matlab-mcr:0.1.0 .
+docker build --no-cache -t ahsoka/matlab-mcr:0.1.0 .
 docker image ls
 docker container run -it --rm <IMAGE ID> /bin/bash
 docker container ls --all
@@ -113,3 +113,4 @@ fw gear upload
   * v0.1.3 RUN chmod +x
   * v0.1.4 export LD_LIBRARY_PATH
   * v0.1.5 Success. :sunglasses:
+  * v0.1.6 test ENTRYPOINT
