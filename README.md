@@ -87,10 +87,7 @@ fw gear upload
 ## Matlab Code
 ```bash
 mcc -m run_ACR_test.m -o autoQA
-rm mccExcludedFiles.log 
-rm readme.txt 
-rm requiredMCRProducts.txt 
-rm run_autoQA.sh 
+rm mccExcludedFiles.log readme.txt requiredMCRProducts.txt run_autoQA.sh 
 ./autoQA
 docker run --rm -ti \
     -v </path/to/MSAE/parent/folder>:/execute \
@@ -118,3 +115,7 @@ fw gear upload
   * v0.1.4 export LD_LIBRARY_PATH
   * v0.1.5 Success. :sunglasses:
   * v0.1.6 test ENTRYPOINT
+
+  * v0.2.0 ahsoka/matlab-mcr-python
+  * v0.2.1 ~~bad param~~ :shit:
+  * v0.2.2 print config.json
