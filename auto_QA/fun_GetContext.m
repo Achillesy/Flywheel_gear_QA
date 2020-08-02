@@ -90,6 +90,7 @@ if exist(input_file, 'file') ~= 2
     error("Can't find input file!");
 end
 
+output_file = strrep(output_file, 'input/output_file', 'output');
 disp(output_file);
 if exist(output_file, 'file') ~= 2
     error("Can't find output file!")

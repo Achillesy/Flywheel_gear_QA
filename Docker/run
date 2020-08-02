@@ -13,18 +13,17 @@ CONFIG_FILE=$FLYWHEEL_BASE/config.json
 MANIFEST_FILE=$FLYWHEEL_BASE/manifest.json
 
 ###############################################################################
-# Run autoQA
 echo -e "Starting autoQA..."
+# Set permissions for outputs (prevent root only r/w)
+cp $INPUT_DIR/output_file/*.txt $OUTPUT_DIR/.
+chmod -R 777 $OUTPUT_DIR
+# Run autoQA
 $FLYWHEEL_BASE/autoQA
 # Check status code and die
 if [[ $? != 0 ]]; then
   echo -e "Problem encountered during autoQA!"
   exit 1
 fi
-# Set permissions for outputs (prevent root only r/w)
-mv $INPUT_DIR/output_file/*.csv $OUTPUT_DIR/.
-chmod -R 777 $OUTPUT_DIR
-ls $OUTPUT_DIR
 echo -e "Done!"
 
 exit 0
