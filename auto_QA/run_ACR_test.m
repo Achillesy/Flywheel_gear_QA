@@ -502,7 +502,7 @@ A= [
     TEST_2_S1_manual(1,1),TEST_2_S1_manual(2,1),TEST_2_S1_auto(1,1),TEST_2_S1_auto(2,1),...
     TEST_3_S1_manual,TEST_3_S1_auto,TEST_4_S1,TEST_4_S11,...
     TEST_5_S7*100,TEST_6_S7*100,...
-    TEST_7_S11+TEST_7_S10+TEST_7_S9+TEST_7_S8];
+    TEST_7_S11+TEST_7_S10+TEST_7_S9+TEST_7_S8,now];
 %% del by Achilles start
 % 
 % xlswrite([save_path_excel save_file_name],A,['A',num2str(size(alldata,1)+1),':','R',num2str(size(alldata,1)+1)]);%v2
@@ -564,5 +564,5 @@ A= [
 fid = fopen(output_file, 'A');
 newLine = join(string(A), ',');
 disp(newLine);
-fprintf(fid, strcat("\n", newLine));
+fprintf(fid, strcat(newLine, "\n"));
 fclose(fid);

@@ -77,12 +77,12 @@ lin32 = strcmp(str, 'GLNXA32');
 mac64 = strcmp(str, 'MACI64');
 if mac64
     % for MacBook Pro local Debug
-    input_file = './flywheel/v0/input/input_file/ser002img00001.dcm';
-    output_file = './flywheel/v0/input/output_file/Circle_Imaging_MR2.csv';
+    input_file =  './flywheel/v0/input/input_file/ser002img00001.dcm';
+    output_file = './flywheel/v0/output/Circle_Imaging_MR2.txt';
 elseif win64 || win32
     % for Windows local Debug
-    input_file = 'C:\flywheel\v0\input\input_fileser002img00001.dcm';
-    output_file = 'C:\flywheel\v0\input\output_file\Circle_Imaging_MR2.csv';
+    input_file =  'C:\flywheel\v0\input\input_file\ser002img00001.dcm';
+    output_file = 'C:\flywheel\v0\output\Circle_Imaging_MR2.txt';
 end
 
 disp(input_file);
