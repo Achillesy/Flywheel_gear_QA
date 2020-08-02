@@ -1,13 +1,13 @@
 {
     "name": "auto-qa",
-    "label": "auto_QA: My 2nd Gear",
-    "description": "My very first gear, developed with the scitran-apps/gannet proj.",
-    "version": "0.1.5",
+    "label": "auto_QA",
+    "description": "This gear script runs all the functions to test ACR phantom",
+    "version": "0.2.6",
     "author":  "Xuchu Liu",
     "maintainer":  "Jie",
-    "cite":  "",
+    "cite":  "Don’t repeat yourself.",
     "license": "Apache-2.0",
-    "url": "https://github.com/Achillesy/gear_QA",
+    "url": "https://www.reinhand.com",
     "source":  "https://github.com/Achillesy/gear_QA",
 
     "environment": {
@@ -17,7 +17,7 @@
     "custom": {
         "gear-builder": {
             "category": "analysis",
-            "image": "flywheel/matlab-mcr:v97"
+            "image": "ahsoka/matlab-mcr-python:0.1.0"
         },
             
         "flywheel": {
@@ -26,8 +26,25 @@
     },
     
     "inputs": {
+        "input_file": {
+            "description": "the dicom file you'll auto QA (must include SAG LOC and Axial T1 Image)",
+            "base": "file",
+            "type": { "enum": [ "dicom" ] }
+        },
+        "output_file": {
+            "description": "the excel file you'll write the result",
+            "base": "file",
+            "type": { "enum": [ "csv" ] }
+        }
     },
 
     "config": {
+        "vendor": {
+            "description": "GE or Siemens Scanner? GE=1, Siemens=0: ",
+            "default": 1,
+            "mininum": 0,
+            "maxinum": 1,
+            "type": "integer"
+        }
     }
 }
