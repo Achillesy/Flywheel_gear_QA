@@ -119,3 +119,8 @@ fw gear upload
   * v0.2.0 ahsoka/matlab-mcr-python
   * v0.2.1 ~~bad param~~ :shit:
   * v0.2.2 print config.json
+  * v0.2.3 run_ACR_test.m pass
+  * v0.2.5 mkdir $OUTPUT_DIR
+  * v0.2.6 cp $INPUT_DIR/output_file $OUTPUT_DIR
+  * v0.2.7 run_ACR_test.m write to output file
+  * v0.2.8 Circle_Imaging_MR2.txt
