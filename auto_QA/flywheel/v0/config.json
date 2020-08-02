@@ -138,27 +138,6 @@
                 "tags": [],
                 "type": "dicom"
             }
-        },
-        "output_file": {
-            "base": "file",
-            "hierarchy": {
-                "id": "5f2588f9a6bb9202a253167c",
-                "type": "acquisition"
-            },
-            "location": {
-                "name": "Circle_Imaging_MR2.txt",
-                "path": "/flywheel/v0/input/output_file/Circle_Imaging_MR2.txt"
-            },
-            "object": {
-                "classification": {},
-                "info": {},
-                "measurements": [],
-                "mimetype": "text/csv",
-                "modality": null,
-                "size": 111,
-                "tags": [],
-                "type": "tabular data"
-            }
         }
     }
 }

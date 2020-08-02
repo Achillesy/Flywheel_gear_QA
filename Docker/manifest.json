@@ -2,7 +2,7 @@
     "name": "auto-qa",
     "label": "auto_QA",
     "description": "This gear script runs all the functions to test ACR phantom",
-    "version": "0.2.9",
+    "version": "0.3.0",
     "author":  "Xuchu Liu",
     "maintainer":  "Jie",
     "cite":  "Don’t repeat yourself.",
@@ -32,11 +32,6 @@
             "description": "the dicom file you'll auto QA (must include SAG LOC and Axial T1 Image)",
             "base": "file",
             "type": { "enum": [ "dicom" ] }
-        },
-        "output_file": {
-            "description": "the excel file you'll write the result",
-            "base": "file",
-            "type": { "enum": [ "text" ] }
         }
     },
 

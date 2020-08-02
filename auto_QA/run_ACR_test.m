@@ -20,7 +20,7 @@ elseif win64 || win32
 else
     config_json = '/flywheel/v0/config.json';
 end
-[config, input_file, output_file] = fun_GetContext(config_json);
+[config, input_file, output_dir] = fun_GetContext(config_json);
 vendor = config.vendor;
 
 dir_name_loc = './test_images/loc/';
@@ -34,30 +34,30 @@ dir_name_T1 = './test_images/T1/';
 header = dicominfo(input_file); % dicom header for SAG LOC
 if vendor ==1
     if all(header.DeviceSerialNumber == '0000000312563CMR')==1
-        save_file_name=['Circle_Imaging_MR1.xlsx'];
+        save_file_name=['Circle_Imaging_MR1.txt'];
         B0 = 1.5;
     elseif all(header.DeviceSerialNumber == '000000312942CMR2')==1
-        save_file_name=['Circle_Imaging_MR2.xlsx'];
+        save_file_name=['Circle_Imaging_MR2.txt'];
         B0 = 1.5;
     elseif all(header.DeviceSerialNumber == '00000000312947MR')==1
-        save_file_name=['SouthLoop_MR.xlsx'];
+        save_file_name=['SouthLoop_MR.txt'];
         B0 = 1.5;
     elseif all(header.DeviceSerialNumber == '000000630724ROMR')==1
-        save_file_name=['OakBrook_MR.xlsx'];
-        B0 = 1.5;    
-    else
-        save_file_name=['ROPH_MR.xlsx'];
+        save_file_name=['OakBrook_MR.txt'];
         B0 = 1.5;
-    end 
+    else
+        save_file_name=['ROPH_MR.txt'];
+        B0 = 1.5;
+    end
 else
     if all(header.DeviceSerialNumber == '40715')==1
-        save_file_name=['Tower_MR1.xlsx'];
+        save_file_name=['Tower_MR1.txt'];
         B0 = 3.0;
     elseif all(header.DeviceSerialNumber == '40714')==1
-        save_file_name=['Tower_MR2.xlsx'];
+        save_file_name=['Tower_MR2.txt'];
         B0 = 3.0;
     elseif all(header.DeviceSerialNumber == '31172')==1
-        save_file_name=['Tower_MR3.xlsx'];
+        save_file_name=['Tower_MR3.txt'];
         B0 = 1.5;
     end
 end
@@ -105,7 +105,7 @@ end
 %7.define result saving path
 dummy=0;
 for i=size(dir_name_loc,2)-1:-1:1
-   if strcmp(dir_name_loc(1,i),'/')==1
+    if strcmp(dir_name_loc(1,i),'/')==1
         dummy=i;
         break;
     end
@@ -130,9 +130,9 @@ else
 end
 if pf_hdl(1)==0
     disp('Sag Loc Geometric Distortion Failed');
-%     h=errordlg('Sag Loc Geometric Distortion Failed');
-%     set(h, 'Position', [800 50 200 80]);
-%     clear h
+    %     h=errordlg('Sag Loc Geometric Distortion Failed');
+    %     set(h, 'Position', [800 50 200 80]);
+    %     clear h
 else
     disp('SAG LOC GEOMETRIC DISTORTION PASS');
 end
@@ -182,9 +182,9 @@ else
 end
 if pf_hdl(2)==0
     disp('S5 Geometric Distortion Failed');
-%     h=errordlg('S5 Geometric Distortion Failed');
-%     set(h, 'Position', [850 50 200 80]);
-%     clear h
+    %     h=errordlg('S5 Geometric Distortion Failed');
+    %     set(h, 'Position', [850 50 200 80]);
+    %     clear h
 else
     disp('AXIAL T1 SLICE 5 GEOMETRIC DISTORTION PASS');
 end
@@ -222,9 +222,9 @@ else
     
     if pf_hdl(3)==0 || pf_hdl(4)==0
         disp('Manual High Contrast Spatial Resolution Failed');
-%         h=errordlg('Manual High Contrast Spatial Resolution Failed');
-%         set(h, 'Position', [1000 50 250 80]);
-%         clear h
+        %         h=errordlg('Manual High Contrast Spatial Resolution Failed');
+        %         set(h, 'Position', [1000 50 250 80]);
+        %         clear h
     else
         disp('HIGH CONTRAST SPATIAL RESOLUTION MANUAL PASS');
     end
@@ -235,9 +235,9 @@ else
     disp(['TEST_2_S1_auto=',num2str(TEST_2_S1_auto(1)),'  and  ',num2str(TEST_2_S1_auto(2))])
     if pf_hdl(5)==0 || pf_hdl(6)==0
         disp('Automatic High Contrast Spatial Resolution Failed');
-%         h=errordlg('Automatic High Contrast Spatial Resolution Failed');
-%         set(h, 'Position', [900 50 250 80]);
-%         clear h
+        %         h=errordlg('Automatic High Contrast Spatial Resolution Failed');
+        %         set(h, 'Position', [900 50 250 80]);
+        %         clear h
     else
         disp('HIGH CONTRAST SPATIAL RESOLUTION AUTOMATIC PASS');
     end
@@ -273,9 +273,9 @@ else
         (dir_name_T1,file_name_S1_T1,mu_S1,imag_check,manual_test3);
     if pf_hdl(8)==0
         disp('Automatic Slice Thickness Failed');
-%         h= errordlg('Automatic Slice Thickness Failed');
-%         set(h, 'Position', [920 50 200 80]);
-%         clear h
+        %         h= errordlg('Automatic Slice Thickness Failed');
+        %         set(h, 'Position', [920 50 200 80]);
+        %         clear h
     else
         disp('SLICE THICKNESS ACCURACY AUTOMATIC PASS');
     end
@@ -297,9 +297,9 @@ else
 end
 if pf_hdl(9)==0
     disp('Slice Position Accuracy S1 Failed');
-%     h= errordlg('Slice Position Accuracy S1 Failed');
-%     set(h, 'Position', [950 50 200 80]);
-%     clear h
+    %     h= errordlg('Slice Position Accuracy S1 Failed');
+    %     set(h, 'Position', [950 50 200 80]);
+    %     clear h
 else
     disp('SLICE POSITION ACCURACY S1 PASS');
 end
@@ -321,9 +321,9 @@ else
 end
 if pf_hdl(10)==0
     disp('Slice Position Accuracy S11 Failed');
-%     h=errordlg('Slice Position Accuracy S11 Failed');
-%     set(h, 'Position', [1000 50 200 80]);
-%     clear h
+    %     h=errordlg('Slice Position Accuracy S11 Failed');
+    %     set(h, 'Position', [1000 50 200 80]);
+    %     clear h
 else
     disp('SLICE POSITION ACCURACY S11 PASS');
 end
@@ -354,9 +354,9 @@ else
 end
 if pf_hdl(11)==0
     disp('PIU Failed');
-%     h=errordlg('PIU Failed');
-%     set(h, 'Position', [1050 50 200 80]);
-%     clear h
+    %     h=errordlg('PIU Failed');
+    %     set(h, 'Position', [1050 50 200 80]);
+    %     clear h
 else
     disp('IMAGE INTENSITY UNIFORMITY PASS');
 end
@@ -376,9 +376,9 @@ else
 end
 if pf_hdl(12)==0
     disp('PSG Failed');
-%     h=errordlg('PSG Failed');
-%     set(h, 'Position', [1100 50 200 80]);
-%     clear h
+    %     h=errordlg('PSG Failed');
+    %     set(h, 'Position', [1100 50 200 80]);
+    %     clear h
 else
     disp('PERCENTAGE SIGNAL GHOSTING PASS');
 end
@@ -454,9 +454,9 @@ end
 
 if pf_hdl(13)==0
     disp('LCOD Failed');
-%     h=errordlg('LCOD Failed');
-%     set(h, 'Position', [1150 50 200 80]);
-%     clear h
+    %     h=errordlg('LCOD Failed');
+    %     set(h, 'Position', [1150 50 200 80]);
+    %     clear h
 else
     disp(' LOW CONTRAST OBJECT DETECTABILITY PASS');
 end
@@ -494,8 +494,8 @@ t_T1=toc;
 %         end
 %     end
 % end
-% 
-% 
+%
+%
 %% del by Achilles end
 A= [
     studydate, center_freq, TEST_1_loc,TEST_1_S5_hori,TEST_1_S5_vert,TEST_1_S5_ng,TEST_1_S5_pg,...
@@ -504,13 +504,13 @@ A= [
     TEST_5_S7*100,TEST_6_S7*100,...
     TEST_7_S11+TEST_7_S10+TEST_7_S9+TEST_7_S8,now];
 %% del by Achilles start
-% 
+%
 % xlswrite([save_path_excel save_file_name],A,['A',num2str(size(alldata,1)+1),':','R',num2str(size(alldata,1)+1)]);%v2
-% 
+%
 % % Get Workbook object
 % Excel = actxserver('excel.application');
 % WB = Excel.Workbooks.Open(fullfile([save_path_excel save_file_name]),0,false);
-% 
+%
 % % Set the color of cell "A1" of Sheet 1 to RED
 % if pf_hdl(14) == 0
 %     WB.Worksheets.Item(1).Range(['B',num2str(size(alldata,1)+1)]).Interior.ColorIndex = 3;
@@ -561,8 +561,13 @@ A= [
 % % Quit Excel
 % Excel.Quit();
 %% del by Achilles end
-fid = fopen(output_file, 'A');
-newLine = join(string(A), ',');
-disp(newLine);
-fprintf(fid, strcat(newLine, "\n"));
-fclose(fid);
+try
+    output_file = strcat(output_dir, save_file_name);
+    fid = fopen(output_file, 'a');
+    newLine = join(string(A), ',');
+    disp(newLine);
+    fprintf(fid, strcat(newLine, "\n"));
+    fclose(fid);
+catch ME1
+    disp(ME1.message);
+end

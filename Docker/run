@@ -15,8 +15,7 @@ MANIFEST_FILE=$FLYWHEEL_BASE/manifest.json
 ###############################################################################
 echo -e "Starting autoQA..."
 # Set permissions for outputs (prevent root only r/w)
-cp $INPUT_DIR/output_file/*.txt $OUTPUT_DIR/.
-chmod -R 777 $OUTPUT_DIR
+# chmod -R 777 $OUTPUT_DIR
 # Run autoQA
 $FLYWHEEL_BASE/autoQA
 # Check status code and die
