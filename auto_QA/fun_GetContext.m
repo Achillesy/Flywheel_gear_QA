@@ -7,7 +7,7 @@ if exist(config_json, 'file') == 2
     fid = fopen(config_json, 'r');
     while ~feof(fid)
         curLine = fgetl(fid);
-        disp(curLine);
+        % disp(curLine);
         % get config.vendor
         if contains(curLine, '"vendor":', 'IgnoreCase', true)
             S = strfind(curLine, "vendor");
