@@ -10,9 +10,9 @@ Build context for a Flywheel Gear that can run Matlab code.
      └── run            默认程序入口
 /auto_QA/
      ├── flywheel/v0/   模拟环境
-     |  ├── input/      输入文件
-     |  ├── output/     输出文件
-     |  └── config.json fw配置文件
+     │ ├── input/       输入文件
+     │ ├── output/      输出文件
+     │ └── config.json  fw配置文件
      ├── fun_*.m        子程序
      ├── fun_fun_*.m    子程序
      ├── mccMake.sh     编译批处理
