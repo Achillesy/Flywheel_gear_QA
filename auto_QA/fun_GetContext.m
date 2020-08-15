@@ -7,7 +7,7 @@ if exist(config_json, 'file') == 2
     fid = fopen(config_json, 'r');
     while ~feof(fid)
         curLine = fgetl(fid);
-        % disp(curLine);
+        disp(curLine);
         % get config.vendor
         if contains(curLine, '"vendor":', 'IgnoreCase', true)
             S = strfind(curLine, "vendor");
@@ -17,33 +17,33 @@ if exist(config_json, 'file') == 2
             if ~isempty(E)
                 curLine = curLine(1:E-1);
             end
-            config.vendor = str2double(curLine);
-        end
-        % get input.input_file.location.path
-        if contains(curLine, '"input_file":', 'IgnoreCase', true)
-            b_input = true;
-        end
-        if contains(curLine, '"location":', 'IgnoreCase', true) && b_input
-            b_input = false;
-            b_input_location = true;
-        end
-        if contains(curLine, '"path":', 'IgnoreCase', true) && b_input_location
-            b_input_location = false;
-            splitLines = split(curLine,'"');
-            for i = 1:length(splitLines)
-                if contains(splitLines(i), "input_file", 'IgnoreCase', true)
-                    input_file = string(splitLines(i));
-                end
+            if contains(curLine, 'GE', 'IgnoreCase', true)
+                config.vendor = 1;
+            elseif contains(curLine, 'Siemens', 'IgnoreCase', true)
+                config.vendor = 0;
             end
         end
+        % get input.input_file.location.path
+        %         if contains(curLine, '"input_file":', 'IgnoreCase', true)
+        %             b_input = true;
+        %         end
+        %         if contains(curLine, '"location":', 'IgnoreCase', true) && b_input
+        %             b_input = false;
+        %             b_input_location = true;
+        %         end
+        %         if contains(curLine, '"path":', 'IgnoreCase', true) && b_input_location
+        %             b_input_location = false;
+        %             splitLines = split(curLine,'"');
+        %             for i = 1:length(splitLines)
+        %                 if contains(splitLines(i), "input_file", 'IgnoreCase', true)
+        %                     input_file = string(splitLines(i));
+        %                 end
+        %             end
+        %         end
     end % end While
     fclose(fid);
 else
     error("Can't find config.json!");
-end
-
-if config.vendor ~= 1
-    config.vendor = 0;
 end
 
 str = computer;

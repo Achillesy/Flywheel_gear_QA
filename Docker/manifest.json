@@ -2,7 +2,7 @@
     "name": "auto-qa",
     "label": "auto_QA",
     "description": "This gear script runs all the functions to test ACR phantom",
-    "version": "0.3.0",
+    "version": "0.3.2",
     "author":  "Xuchu Liu",
     "maintainer":  "Jie",
     "cite":  "Don’t repeat yourself.",
@@ -16,7 +16,7 @@
            
     "custom": {
         "gear-builder": {
-            "category": "analysis",
+            "category": "converter",
             "image": "ahsoka/matlab-mcr-python:0.1.0"
         },
             
@@ -28,20 +28,30 @@
     },
     
     "inputs": {
-        "input_file": {
-            "description": "the dicom file you'll auto QA (must include SAG LOC and Axial T1 Image)",
+        "input_sag": {
+            "description": "Select SAG LOC file.",
             "base": "file",
-            "type": { "enum": [ "dicom" ] }
+            "type": { "enum": [ "archive" ] }
+        },
+        "input_ax": {
+            "description": "Select Axial T1 Image file.",
+            "base": "file",
+            "type": { "enum": [ "archive" ] }
+        },
+        "api_key": {
+            "base": "api-key"
         }
     },
 
     "config": {
         "vendor": {
             "description": "GE or Siemens Scanner? GE=1, Siemens=0: ",
-            "default": 1,
-            "mininum": 0,
-            "maxinum": 1,
-            "type": "integer"
+            "default": "GE",
+            "type": "string",
+            "enum": [
+                "GE",
+                "Siemens"
+            ]
         }
     }
 }

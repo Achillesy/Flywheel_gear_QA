@@ -13,6 +13,8 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+ref/
+auto_QA/flywheel/v0/
 
 # Matlab
 mccExcludedFiles.log 
@@ -21,3 +23,5 @@ requiredMCRProducts.txt
 run_autoQA.sh 
 autoQA
 ._*
+*.dcm
+*.zip
