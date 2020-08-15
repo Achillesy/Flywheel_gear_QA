@@ -40,10 +40,14 @@ bash prerun.sh
 ```
 ## Step 4. debug in image
 ```bash
-docker container run -it --rm \
-    -v </path/to/MSAE/parent/folder>:/execute \
-     <IMAGE ID> /bin/bash
+cd /flywheel/v0
+bash prerun.sh
 ```
+in docker container
+```bash
+cp -R /execute/. /flywheel/v0
+```
+
 ## Step 5. upload
 ```bash
 fw gear local
@@ -76,4 +80,5 @@ fw gear upload
   * v0.3.2 ~~var 'b_input'~~ :shit:
 ## auto-zip-qa
   * v0.0.1 ~~confict name~~ :shit:
-  * v0.0.2 Gear Name: auto-zip-qa
+  * v0.0.2 show config.json
+  * v0.0.3 show flywheel tree
