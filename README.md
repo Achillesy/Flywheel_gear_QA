@@ -38,26 +38,20 @@ bash mccMake.sh
 cd /flywheel/v0
 bash prerun.sh
 ```
-## Step 2. debug in image
+## Step 4. debug in image
 ```bash
 docker container run -it --rm \
     -v </path/to/MSAE/parent/folder>:/execute \
      <IMAGE ID> /bin/bash
 ```
-## Matlab Code
-```bash
-mcc -m run_ACR_test.m -o autoQA
-rm mccExcludedFiles.log readme.txt requiredMCRProducts.txt run_autoQA.sh 
-./autoQA
-```
-
-## Available MCR images via Flywheel Dockerhub
+## Step 5. upload
 ```bash
 fw gear local
 fw gear upload
 ```
 
 # History
+## auto-qa
   * v0.1.0 COPY autoQA
   * v0.1.1 ~~Save file~~ :shit:
   * v0.1.2 ~~Change path~~ :shit:
@@ -74,3 +68,12 @@ fw gear upload
   * v0.2.6 cp $INPUT_DIR/output_file $OUTPUT_DIR
   * v0.2.7 run_ACR_test.m write to output file
   * v0.2.8 Circle_Imaging_MR2.txt
+  * v0.2.9 add timestamp
+  * v0.2.10 try to write to message.txt
+  
+  * v0.3.0 output config.json
+  * v0.3.1 ~~two zip input~~ :shit:
+  * v0.3.2 ~~var 'b_input'~~ :shit:
+## auto-zip-qa
+  * v0.0.1 ~~confict name~~ :shit:
+  * v0.0.2 Gear Name: auto-zip-qa
