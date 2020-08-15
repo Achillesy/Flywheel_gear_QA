@@ -19,7 +19,22 @@ Build context for a Flywheel Gear that can run Matlab code.
      └── run_ACR_test.m 主程序
 ```
 # Step by Step
-## Step 1.
+## Step 1. build docker image
+```bash
+docker pull flywheel/matlab-mcr:v97
+docker build --no-cache -t ahsoka/matlab-mcr:0.1.0 .
+docker image ls
+docker container run -it --rm <IMAGE ID> /bin/bash
+docker container ls --all
+docker container rm <IMAGE ID>
+```
+## Step 2. test run script
+```bash
+docker container run -it --rm \
+    -v </path/to/MSAE/parent/folder>:/execute \
+     <IMAGE ID> /bin/bash
+```
+
 ## Matlab Code
 ```bash
 mcc -m run_ACR_test.m -o autoQA
@@ -33,12 +48,6 @@ docker run --rm -ti \
 
 ## Available MCR images via Flywheel Dockerhub
 ```bash
-docker pull flywheel/matlab-mcr:v97
-docker build --no-cache -t ahsoka/matlab-mcr:0.1.0 .
-docker image ls
-docker container run -it --rm <IMAGE ID> /bin/bash
-docker container ls --all
-docker container rm <IMAGE ID>
 fw gear local
 fw gear upload
 ```
