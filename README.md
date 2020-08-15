@@ -28,22 +28,27 @@ docker container run -it --rm <IMAGE ID> /bin/bash
 docker container ls --all
 docker container rm <IMAGE ID>
 ```
-## Step 2. test run script
+## Step 2. build matlab code
+```bash
+bash mccMake.sh
+./autoQA
+```
+## Step 3. debug at local
+```bash
+cd /flywheel/v0
+bash prerun.sh
+```
+## Step 2. debug in image
 ```bash
 docker container run -it --rm \
     -v </path/to/MSAE/parent/folder>:/execute \
      <IMAGE ID> /bin/bash
 ```
-
 ## Matlab Code
 ```bash
 mcc -m run_ACR_test.m -o autoQA
 rm mccExcludedFiles.log readme.txt requiredMCRProducts.txt run_autoQA.sh 
 ./autoQA
-docker run --rm -ti \
-    -v </path/to/MSAE/parent/folder>:/execute \
-    flywheel/matlab-mcr:v97 \
-    /execute/autoQA [<any input arguments>]
 ```
 
 ## Available MCR images via Flywheel Dockerhub
