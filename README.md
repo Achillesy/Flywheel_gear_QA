@@ -88,3 +88,4 @@ docker image rm <IMAGE ID>
   * v0.0.2 show config.json
   * v0.0.3 show flywheel tree
   * v0.0.4 unzip file
+  * v0.0.5 del api_key
