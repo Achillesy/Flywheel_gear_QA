@@ -1,1 +1,0 @@
-test_images/loc/ser002img00001.dcm
