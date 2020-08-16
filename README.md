@@ -42,10 +42,13 @@ bash prerun.sh
 ```bash
 cd /flywheel/v0
 bash testImage.sh
+./run
 ```
 in docker container
 ```bash
 cp -R /execute/. /flywheel/v0
+cd /flywheel/v0
+./run
 ```
 
 ## Step 5. upload
