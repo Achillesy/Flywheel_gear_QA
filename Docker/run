@@ -13,9 +13,34 @@ CONFIG_FILE=$FLYWHEEL_BASE/config.json
 MANIFEST_FILE=$FLYWHEEL_BASE/manifest.json
 
 ###############################################################################
-echo -e "Starting autoQA..."
-# Set permissions for outputs (prevent root only r/w)
-# chmod -R 777 $OUTPUT_DIR
+# show config.json
+echo -e "=== cat config.json ==="
+cat $FLYWHEEL_BASE/config.json
+
+# show /flywheel/v0 tree
+echo -e "=== tree /flywheel/v0 ==="
+tree /flywheel/v0
+
+# unzip
+ZIP_FILE=$(cat config.json | jq -r '.inputs.input_zip.location.path')
+unzip -l $ZIP_FILE | grep -E '(/loc/){1}.*[0-9]{2,}(.dcm)' \
+  | awk '{print $4}' > /tmp/qa_loc_list.txt
+unzip -l $ZIP_FILE | grep -E '(/T1/){1}.*[0-9]{2,}(.dcm)' \
+  | awk '{print $4}' > /tmp/qa_T1_list.txt
+unzip -oq $ZIP_FILE -d /tmp/
+if [[ $? != 0 ]]; then
+  echo -e "Problem encountered during unzip!"
+  exit 1
+fi
+
+# show loc and T1 files
+echo -e "=== cat qa_loc_list.txt ==="
+cat /tmp/qa_loc_list.txt
+echo -e "=== cat qa_T1_list.txt ==="
+cat /tmp/qa_T1_list.txt
+
+###############################################################################
+echo -e "=== Starting autoQA... ==="
 # Run autoQA
 $FLYWHEEL_BASE/autoQA
 # Check status code and die
@@ -23,6 +48,10 @@ if [[ $? != 0 ]]; then
   echo -e "Problem encountered during autoQA!"
   exit 1
 fi
-echo -e "Done!"
+echo -e "=== Done! ==="
+
+###############################################################################
+# Run saveQA.py
+python3 saveQA.py
 
 exit 0
