@@ -83,9 +83,11 @@ docker image rm <IMAGE ID>
   * v0.3.0 output config.json
   * v0.3.1 ~~two zip input~~ :shit:
   * v0.3.2 ~~var 'b_input'~~ :shit:
+  
 ## auto-zip-qa
   * v0.0.1 ~~confict name~~ :shit:
   * v0.0.2 show config.json
   * v0.0.3 show flywheel tree
   * v0.0.4 unzip file
   * v0.0.5 del api_key
+  * v0.0.6 write .metadata.json
