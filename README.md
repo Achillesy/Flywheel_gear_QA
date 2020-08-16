@@ -52,6 +52,8 @@ cp -R /execute/. /flywheel/v0
 ```bash
 fw gear local
 fw gear upload
+docker image ls
+docker image rm <IMAGE ID>
 ```
 
 # History
