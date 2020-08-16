@@ -41,7 +41,7 @@ bash prerun.sh
 ## Step 4. debug in image
 ```bash
 cd /flywheel/v0
-bash prerun.sh
+bash testImage.sh
 ```
 in docker container
 ```bash
