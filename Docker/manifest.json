@@ -3,46 +3,49 @@
     "label": "auto_QA",
     "description": "This gear script runs all the functions to test ACR phantom",
     "version": "0.3.2",
-    "author":  "Xuchu Liu",
-    "maintainer":  "Jie",
-    "cite":  "Don’t repeat yourself.",
+    "author": "Xuchu Liu",
+    "maintainer": "Jie",
+    "cite": "Don’t repeat yourself.",
     "license": "Apache-2.0",
     "url": "https://www.reinhand.com",
-    "source":  "https://github.com/Achillesy/gear_QA",
-
+    "source": "https://github.com/Achillesy/gear_QA",
     "environment": {
-        "FLYWHEEL":"/flywheel/v0"
-     },
-           
+        "FLYWHEEL": "/flywheel/v0"
+    },
     "custom": {
         "gear-builder": {
             "category": "converter",
-            "image": "ahsoka/matlab-mcr-python:0.1.0"
+            "image": "ahsoka/matlab-mcr-python-dicom:0.1.1"
         },
-            
         "flywheel": {
             "suite": "auto QA"
-         },
-
-         "generator": "来来我是一块菠萝，箩箩箩箩箩箩箩箩箩箩箩箩箩箩箩箩"
+        },
+        "generator": "来来我是一块菠萝，箩箩箩箩箩箩箩箩箩箩箩箩箩箩箩箩"
     },
-    
     "inputs": {
         "input_sag": {
             "description": "Select SAG LOC file.",
             "base": "file",
-            "type": { "enum": [ "archive" ] }
+            "type": {
+                "enum": [
+                    "archive"
+                ]
+            }
         },
         "input_ax": {
             "description": "Select Axial T1 Image file.",
             "base": "file",
-            "type": { "enum": [ "archive" ] }
+            "type": {
+                "enum": [
+                    "archive"
+                ]
+            }
         },
         "api_key": {
-            "base": "api-key"
+            "base": "api-key",
+            "read-only": true
         }
     },
-
     "config": {
         "vendor": {
             "description": "GE or Siemens Scanner? GE=1, Siemens=0: ",

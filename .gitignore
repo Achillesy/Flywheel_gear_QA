@@ -14,7 +14,7 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 ref/
-auto_QA/flywheel/v0/
+auto_QA/flywheel/
 
 # Matlab
 mccExcludedFiles.log 
