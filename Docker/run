@@ -17,10 +17,6 @@ MANIFEST_FILE=$FLYWHEEL_BASE/manifest.json
 echo -e "=== cat config.json ==="
 cat $FLYWHEEL_BASE/config.json
 
-# show /flywheel/v0 tree
-echo -e "=== tree /flywheel/v0 ==="
-tree /flywheel/v0
-
 # unzip
 ZIP_FILE=$(cat config.json | jq -r '.inputs.input_zip.location.path')
 unzip -l $ZIP_FILE | grep -E '(/loc/){1}.*[0-9]{2,}(.dcm)' \
@@ -53,5 +49,12 @@ echo -e "=== Done! ==="
 ###############################################################################
 # Run saveQA.py
 python3 saveQA.py
+
+cp /tmp/qa_result.txt $OUTPUT_DIR/.
+chmod -R 777 $OUTPUT_DIR
+
+# show /flywheel/v0 tree
+echo -e "=== tree /flywheel/v0 ==="
+tree /flywheel/v0
 
 exit 0

@@ -17,33 +17,39 @@ def write_to_meta(result_file_path):
     metadata = {}
 
     # Session metadata
-    metadata["session"] = {}
+    # metadata["session"] = {}
+    # metadata["session"]["timestamp"] = "2020-06-12T06:15:00+00:00"
+    # metadata["session"]["operator"] = "NJS"
+    # metadata["session"]["label"] = "14840"
+    # metadata["session"]["weight"] = 9.07
 
     # Subject metada
-    metadata["session"]["subject"] = {}
+    # metadata["session"]["subject"] = {}
+    # metadata["session"]["subject"]["firstname"] = "CIC_MR2"
+    # metadata["session"]["subject"]["lastname"] = "ACR"
 
     # File classification
     dicom_file = {}
-    dicom_file["name"] = "Achilles Zip"
-    dicom_file["modality"] = "MR"
-    dicom_file["classification"] = {}
+    dicom_file["name"] = "test_images2_qa.zip" # necessary
+    # dicom_file["modality"] = "MR"
+    # dicom_file["classification"] = {}
 
     # Acquisition metadata
     metadata["acquisition"] = {}
-    metadata["acquisition"]["timestamp"] = "2020-08-16"
-    metadata["acquisition"]["instrument"] = "MRA"
-    metadata["acquisition"]["label"] = "SAGG"
+    # metadata["acquisition"]["timestamp"] = "2020-06-12T06:15:58+00:00"
+    # metadata["acquisition"]["instrument"] = "MR"
+    # metadata["acquisition"]["label"] = "SAG"
 
     # File info from dicom header
     dicom_file["info"] = {}
-    dicom_file["WindowCenter"] = 757
+    dicom_file["info"]["qa"] = {}
+    dicom_file["info"]["qa"]["A1"] = 20200612
 
     # Append the dicom_file to the files array
     metadata["acquisition"]["files"] = [dicom_file]
 
     # Write out the metadata to file (.metadadata.json)
-    # metafile_outname = "/flywheel/v0/output/.metadata.json"
-    metafile_outname = "/flywheel/v0/output/metadata.json"
+    metafile_outname = "/flywheel/v0/output/.metadata.json"
     with open(metafile_outname, "w") as metafile:
         json.dump(metadata, metafile)
 
