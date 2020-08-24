@@ -2,7 +2,7 @@
     "name": "auto-qa",
     "label": "auto_QA",
     "description": "This gear script runs all the functions to test ACR phantom",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "author": "Xuchu Liu",
     "maintainer": "Jie",
     "cite": "Don’t repeat yourself.",
@@ -26,6 +26,7 @@
         "input_sag": {
             "description": "Select SAG LOC file.",
             "base": "file",
+            "optional": true,
             "type": {
                 "enum": [
                     "archive"
@@ -35,6 +36,7 @@
         "input_ax": {
             "description": "Select Axial T1 Image file.",
             "base": "file",
+            "optional": true,
             "type": {
                 "enum": [
                     "archive"
