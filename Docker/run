@@ -3,6 +3,7 @@
 
 # Configure the ENV
 export LD_LIBRARY_PATH=/opt/mcr/v97/runtime/glnxa64:/opt/mcr/v97/bin/glnxa64:/opt/mcr/v97/sys/os/glnxa64:$LD_LIBRARY_PATH
+export LC_ALL=C.UTF-8
 
 ###############################################################################
 # Configure paths
@@ -21,7 +22,7 @@ cat $FLYWHEEL_BASE/config.json
 # Run batchQA.py
 echo -e "=== Starting batchQA.py ... ==="
 python3 batchQA.py
-echo -e "=== batchQA.py Done! ... ==="
+echo -e "=== batchQA.py Done! ==="
 
 # unzip
 # ZIP_FILE=$(cat config.json | jq -r '.inputs.input_zip.location.path')
@@ -42,7 +43,7 @@ echo -e "=== batchQA.py Done! ... ==="
 # cat /tmp/qa_T1_list.txt
 
 ###############################################################################
-echo -e "=== Starting autoQA... ==="
+echo -e "=== Starting autoQA ... ==="
 # # Run autoQA
 # $FLYWHEEL_BASE/autoQA
 # # Check status code and die
@@ -50,11 +51,13 @@ echo -e "=== Starting autoQA... ==="
 #   echo -e "Problem encountered during autoQA!"
 #   exit 1
 # fi
-echo -e "=== Done! ==="
+echo -e "=== autoQA Done! ==="
 
 ###############################################################################
 # Run saveQA.py
+echo -e "=== Starting saveQA.py ... ==="
 # python3 saveQA.py
+echo -e "=== saveQA.py Done! ==="
 
 # cp /tmp/qa_result.txt $OUTPUT_DIR/.
 # chmod -R 777 $OUTPUT_DIR
