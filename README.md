@@ -94,3 +94,6 @@ docker image rm <IMAGE ID>
   * v0.0.7 not use ' or " in json file
   * v0.0.8 write metadata.json
   * v0.0.9 chmod -R 777 $OUTPUT_DIR
+
+## auto_QA
+  * v0.4.0 get config.json
