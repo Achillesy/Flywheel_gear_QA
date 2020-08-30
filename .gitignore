@@ -16,6 +16,11 @@
 ref/
 auto_QA/flywheel/
 
+# Python3
+__pycache__
+*.py[cod]
+*$py.class
+
 # Matlab
 mccExcludedFiles.log 
 readme.txt 
