@@ -1,13 +1,12 @@
-function [config, input_file, output_dir] = fun_GetContext(config_json)
+function [config, input_dir] = fun_GetContext(config_json)
 % disp(config_json);
 config.vendor = 1;
-input_file = '';
-output_dir = '/flywheel/v0/output/';
+input_dir = '/tmp/';
 if exist(config_json, 'file') == 2
     fid = fopen(config_json, 'r');
     while ~feof(fid)
         curLine = fgetl(fid);
-        disp(curLine);
+        % disp(curLine);
         % get config.vendor
         if contains(curLine, '"vendor":', 'IgnoreCase', true)
             S = strfind(curLine, "vendor");
@@ -54,22 +53,18 @@ lin32 = strcmp(str, 'GLNXA32');
 mac64 = strcmp(str, 'MACI64');
 if mac64
     % for MacBook Pro local Debug
-    input_file = './flywheel/v0/input/input_file/ser002img00001.dcm';
-    output_dir = './flywheel/v0/output/';
+    input_dir =  './flywheel/tmp/';
 elseif win64 || win32
     % for Windows local Debug
-    input_file = 'C:\flywheel\v0\input\input_file\ser002img00001.dcm';
-    output_dir = 'C:\flywheel\v0\output\';
+    input_dir = 'C:\tmp\';
 end
 
-disp(input_file);
-if exist(input_file, 'file') ~= 2
-    error("Can't find input file!");
+% disp(['fun_GetContext input_dir = ', input_dir]);
+if exist(strcat(input_dir, 'loc'), 'dir') ~= 7
+    error("Can't find loc input dir!");
 end
-
-disp(output_dir);
-if exist(output_dir, 'dir') ~= 7
-    error("Can't find output dir!")
+if exist(strcat(input_dir, 'T1'), 'dir') ~= 7
+    error("Can't find T1 input dir!");
 end
 
 end

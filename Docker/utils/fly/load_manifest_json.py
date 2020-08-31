@@ -6,7 +6,9 @@ Functions that get info from Flywheel client, mmmmm helpful!
 import logging
 import json
 
+
 log = logging.getLogger(__name__)
+
 
 def load_manifest_json():
     """
@@ -21,5 +23,6 @@ def load_manifest_json():
     with open(config_file_path) as manifest_data:
         manifest_json = json.load(manifest_data)
     return manifest_json
+
 
 # vi:set autoindent ts=4 sw=4 expandtab : See Vim, :help 'modeline'

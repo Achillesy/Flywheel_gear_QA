@@ -2,7 +2,7 @@
     "name": "auto-qa",
     "label": "auto_QA",
     "description": "This gear script runs all the functions to test ACR phantom",
-    "version": "0.3.3",
+    "version": "0.4.4",
     "author": "Xuchu Liu",
     "maintainer": "Jie",
     "cite": "Don’t repeat yourself.",
@@ -14,38 +14,35 @@
     },
     "custom": {
         "gear-builder": {
-            "category": "converter",
+            "category": "analysis",
             "image": "ahsoka/matlab-mcr-python-dicom:0.1.1"
         },
         "flywheel": {
-            "suite": "auto QA"
+            "suite": "QA"
         },
         "generator": "来来我是一块菠萝，箩箩箩箩箩箩箩箩箩箩箩箩箩箩箩箩"
     },
     "inputs": {
-        "input_zip": {
-            "description": "Archive (.zip) containing DICOM files.",
+        "input_sag": {
+            "description": "Select SAG LOC file.",
             "base": "file",
-            "optional": true,
             "type": {
                 "enum": [
-                    "archive"
+                    "dicom"
                 ]
             }
         },
         "input_ax": {
             "description": "Select Axial T1 Image file.",
             "base": "file",
-            "optional": true,
             "type": {
                 "enum": [
-                    "archive"
+                    "dicom"
                 ]
             }
         },
         "api_key": {
-            "base": "api-key",
-            "read-only": true
+            "base": "api-key"
         }
     },
     "config": {

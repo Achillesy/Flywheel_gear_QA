@@ -14,53 +14,72 @@ CONFIG_FILE=$FLYWHEEL_BASE/config.json
 MANIFEST_FILE=$FLYWHEEL_BASE/manifest.json
 
 ###############################################################################
-# show config.json
-echo -e "=== cat config.json ==="
-cat $FLYWHEEL_BASE/config.json
+# # show config.json
+# echo -e "=== cat config.json ==="
+# cat $FLYWHEEL_BASE/config.json
 
 ###############################################################################
-# Run batchQA.py
-echo -e "=== Starting batchQA.py ... ==="
-python3 batchQA.py
-echo -e "=== batchQA.py Done! ==="
+# # Run batchQA.py
+# echo -e "=== Starting batchQA.py ... ==="
+# python3 batchQA.py
+# echo -e "=== batchQA.py Done! ==="
 
-# unzip
-# ZIP_FILE=$(cat config.json | jq -r '.inputs.input_zip.location.path')
+# unzip T1
+AX_ZIP_FILE=$(cat config.json | jq -r '.inputs.input_ax.location.path')
+rm -rf /tmp/T1
+unzip -joq $AX_ZIP_FILE -d /tmp/T1
+if [[ $? != 0 ]]; then
+  echo -e "Problem encountered during unzip AX_ZIP_FILE!"
+  exit 1
+fi
+
+# unzip loc
+SAG_ZIP_FILE=$(cat config.json | jq -r '.inputs.input_sag.location.path')
+rm -rf /tmp/loc
+unzip -joq $SAG_ZIP_FILE -d /tmp/loc
+if [[ $? != 0 ]]; then
+  echo -e "Problem encountered during unzip SAG_ZIP_FILE!"
+  exit 1
+fi
+
+# # show loc and T1 files
 # unzip -l $ZIP_FILE | grep -E '(/loc/){1}.*[0-9]{2,}(.dcm)' \
 #   | awk '{print $4}' > /tmp/qa_loc_list.txt
 # unzip -l $ZIP_FILE | grep -E '(/T1/){1}.*[0-9]{2,}(.dcm)' \
 #   | awk '{print $4}' > /tmp/qa_T1_list.txt
-# unzip -oq $ZIP_FILE -d /tmp/
-# if [[ $? != 0 ]]; then
-#   echo -e "Problem encountered during unzip!"
-#   exit 1
-# fi
-
-# show loc and T1 files
 # echo -e "=== cat qa_loc_list.txt ==="
 # cat /tmp/qa_loc_list.txt
 # echo -e "=== cat qa_T1_list.txt ==="
 # cat /tmp/qa_T1_list.txt
 
+# chmod -R 777 /tmp/loc /tmp/T1
+# # show /tmp/T1
+# echo -e "=== tree /tmp/T1 ==="
+# tree /tmp/T1
+# # show /tmp/loc
+# echo -e "=== tree /tmp/loc ==="
+# tree /tmp/loc
+
 ###############################################################################
 echo -e "=== Starting autoQA ... ==="
-# # Run autoQA
-# $FLYWHEEL_BASE/autoQA
-# # Check status code and die
-# if [[ $? != 0 ]]; then
-#   echo -e "Problem encountered during autoQA!"
-#   exit 1
-# fi
+# Run autoQA
+$FLYWHEEL_BASE/autoQA
+# Check status code and die
+if [[ $? != 0 ]]; then
+  echo -e "Problem encountered during autoQA!"
+  exit 1
+fi
+SAVE_FILE_NANE=$(cat /tmp/qa_result.json | jq -r '.save_file_name')
 echo -e "=== autoQA Done! ==="
 
 ###############################################################################
 # Run saveQA.py
 echo -e "=== Starting saveQA.py ... ==="
-# python3 saveQA.py
+python3 saveQA.py
 echo -e "=== saveQA.py Done! ==="
 
-# cp /tmp/qa_result.txt $OUTPUT_DIR/.
-# chmod -R 777 $OUTPUT_DIR
+cp /tmp/qa_result.json $OUTPUT_DIR/$SAVE_FILE_NANE
+chmod -R 777 $OUTPUT_DIR
 
 # show /flywheel/v0 tree
 echo -e "=== tree /flywheel/v0 ==="
