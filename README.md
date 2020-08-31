@@ -94,3 +94,10 @@ docker image rm <IMAGE ID>
   * v0.0.7 not use ' or " in json file
   * v0.0.8 write metadata.json
   * v0.0.9 chmod -R 777 $OUTPUT_DIR
+
+## auto_QA
+  * v0.4.0 get config.json
+  * v0.4.1 test unzip and show trees
+  * v0.4.2 fake autoQA test
+  * v0.4.3 get run level
+  * v0.4.4 update session.info
