@@ -100,3 +100,4 @@ docker image rm <IMAGE ID>
   * v0.4.1 test unzip and show trees
   * v0.4.2 fake autoQA test
   * v0.4.3 get run level
+  * v0.4.4 update session.info
