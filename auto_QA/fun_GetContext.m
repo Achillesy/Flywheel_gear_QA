@@ -45,16 +45,10 @@ else
     error("Can't find config.json!");
 end
 
-str = computer;
-win64 = strcmp(str, 'PCWIN64');
-win32 = strcmp(str, 'PCWIN32');
-lin64 = strcmp(str, 'GLNXA64');
-lin32 = strcmp(str, 'GLNXA32');
-mac64 = strcmp(str, 'MACI64');
-if mac64
+if ismac
     % for MacBook Pro local Debug
     input_dir =  './flywheel/tmp/';
-elseif win64 || win32
+elseif ispc
     % for Windows local Debug
     input_dir = 'C:\tmp\';
 end

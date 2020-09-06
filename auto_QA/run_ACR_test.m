@@ -5,17 +5,10 @@
 clc;
 clear;
 
-% zip test del start
-str = computer;
-win64 = strcmp(str, 'PCWIN64');
-win32 = strcmp(str, 'PCWIN32');
-lin64 = strcmp(str, 'GLNXA64');
-lin32 = strcmp(str, 'GLNXA32');
-mac64 = strcmp(str, 'MACI64');
-if mac64
+if ismac
     % for MacBook Pro local Debug
     config_json = './flywheel/v0/config.json';
-elseif win64 || win32
+elseif ispc
     % for Windows local Debug
     config_json ='C:\flywheel\v0\config.json';
 else
@@ -36,31 +29,31 @@ dir_name_T1 = strcat(input_dir, 'T1/');
 
 header = dicominfo([dir_name_loc,file_name_loc]); % dicom header for SAG LOC
 if vendor ==1
-    if all(header.DeviceSerialNumber == '0000000312563CMR')==1
-        save_file_name=['Circle_Imaging_MR1.json'];
+    if all(header.DeviceSerialNumber == '0000000312563CMR')
+        save_file_name='Circle_Imaging_MR1.json';
         B0 = 1.5;
-    elseif all(header.DeviceSerialNumber == '000000312942CMR2')==1
-        save_file_name=['Circle_Imaging_MR2.json'];
+    elseif all(header.DeviceSerialNumber == '000000312942CMR2')
+        save_file_name='Circle_Imaging_MR2.json';
         B0 = 1.5;
-    elseif all(header.DeviceSerialNumber == '00000000312947MR')==1
-        save_file_name=['SouthLoop_MR.json'];
+    elseif all(header.DeviceSerialNumber == '00000000312947MR')
+        save_file_name='SouthLoop_MR.json';
         B0 = 1.5;
-    elseif all(header.DeviceSerialNumber == '000000630724ROMR')==1
-        save_file_name=['OakBrook_MR.json'];
+    elseif all(header.DeviceSerialNumber == '000000630724ROMR')
+        save_file_name='OakBrook_MR.json';
         B0 = 1.5;
     else
-        save_file_name=['ROPH_MR.json'];
+        save_file_name='ROPH_MR.json';
         B0 = 1.5;
     end
 else
-    if all(header.DeviceSerialNumber == '40715')==1
-        save_file_name=['Tower_MR1.json'];
+    if all(header.DeviceSerialNumber == '40715')
+        save_file_name='Tower_MR1.json';
         B0 = 3.0;
-    elseif all(header.DeviceSerialNumber == '40714')==1
-        save_file_name=['Tower_MR2.json'];
+    elseif all(header.DeviceSerialNumber == '40714')
+        save_file_name='Tower_MR2.json';
         B0 = 3.0;
-    elseif all(header.DeviceSerialNumber == '31172')==1
-        save_file_name=['Tower_MR3.json'];
+    elseif all(header.DeviceSerialNumber == '31172')
+        save_file_name='Tower_MR3.json';
         B0 = 1.5;
     end
 end
@@ -68,7 +61,8 @@ end
 studydate = str2num(header.StudyDate);
 center_freq = header.ImagingFrequency*1000000;
 
-visual=1;
+
+visual=0; % Modified by Achilles
 %3.initial image check or not
 imag_check=0;
 %4.user's personal contrast
@@ -108,7 +102,7 @@ end
 %7.define result saving path
 dummy=0;
 for i=size(dir_name_loc,2)-1:-1:1
-    if strcmp(dir_name_loc(1,i),'/')==1
+    if strcmp(dir_name_loc(1,i),fun_GetFileSlash())==1
         dummy=i;
         break;
     end
@@ -170,8 +164,7 @@ if sum(imhere)>0
 else
     disp('It''s the 1st time you run Test 1 on S5 T1 image.');
     [TEST_1_S5_hori,TEST_1_S5_vert,TEST_1_S5_ng,TEST_1_S5_pg,dummy(1,3:6)]...
-        =fun_ACR_1_S5(dir_name_T1,file_name_S5_T1,visual,imag_check,'T1',save_path);
-    
+        =fun_ACR_1_S5(dir_name_T1,file_name_S5_T1,visual,imag_check,'T1',save_path);    
     disp(['TEST_1_S5_hori=',num2str(TEST_1_S5_hori)])
     disp(['TEST_1_S5_vert=',num2str(TEST_1_S5_vert)])
     disp(['TEST_1_S5_ng=',num2str(TEST_1_S5_ng)])
@@ -216,8 +209,8 @@ else
     %                 'contrast index 1.1=left/1.0=middle/0.9=right)']);%v2
     %             uiwait(h);
     %     end
-    visual=0;
-    manual_test2=1; %manaul
+    visual=0; % Modified by Achilles
+    manual_test2=0; % manaul % Modified by Achilles
     [TEST_2_S1_manual,pf_hdl(3:4)]=fun_ACR_2_S1...
         (dir_name_T1,file_name_S1_T1,visual,manual_test2,imag_check,myContrast);% 1st row for UL pair and 2nd row for LR pair
     disp(['TEST_2_S1_manual=',num2str(TEST_2_S1_manual(1)),'  and  ',num2str(TEST_2_S1_manual(2))])
@@ -248,7 +241,7 @@ else
 end
 
 %10.TEST 3 - SLICE THICKNESS ACCURACY
-visual=1;
+visual=0; % Modified by Achilles
 s=whos;
 imhere=zeros(size(s,1),1);
 for i=1:size(s,1)
@@ -259,7 +252,7 @@ if sum(imhere)>0
 else
     disp('It''s the 1st time you run Test 3 on S1 T1 image.');
     
-    manual_test3=1;% mannually draw lines
+    manual_test3=0;% mannually draw lines % Modified by Achilles
     [TEST_3_S1_manual,pf_hdl(7)]=fun_ACR_3_S1...
         (dir_name_T1,file_name_S1_T1,mu_S1,imag_check,manual_test3);
     if pf_hdl(7)==0
@@ -388,7 +381,7 @@ end
 %close all;
 
 %14.TEST 7-LOW CONTRAST OBJECT DETECTABILITY
-manual_test7=1;
+manual_test7=0; % Modified by Achilles
 %141.S11
 s=whos;
 imhere=zeros(size(s,1),1);

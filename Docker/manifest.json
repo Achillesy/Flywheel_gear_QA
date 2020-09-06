@@ -2,7 +2,7 @@
     "name": "auto-qa",
     "label": "auto_QA",
     "description": "This gear script runs all the functions to test ACR phantom",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "author": "Xuchu Liu",
     "maintainer": "Jie",
     "cite": "Don’t repeat yourself.",
