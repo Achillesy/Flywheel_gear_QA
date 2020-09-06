@@ -101,3 +101,4 @@ docker image rm <IMAGE ID>
   * v0.4.2 fake autoQA test
   * v0.4.3 get run level
   * v0.4.4 update session.info
+  * v0.4.5 test autoQA
